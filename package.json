@@ -1,0 +1,29 @@
+{
+  "name": "makiversario",
+  "version": "1.0.0",
+  "description": "Simple countdown",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simone-rosso/makiversario.git"
+  },
+  "author": "Simone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simone-rosso/makiversario/issues"
+  },
+  "homepage": "https://github.com/simone-rosso/makiversario#readme",
+  "devDependencies": {
+    "vite": "^3.2.5"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^2.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
