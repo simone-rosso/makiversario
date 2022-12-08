@@ -1,0 +1,45 @@
+.App {
+  background: #000;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+main {
+  border: 1px solid #fff;
+  aspect-ratio: 9/16;
+  border-radius: 3px;
+  max-width: 375px;
+  width: 100vw;
+  color: yellow;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.numbers {
+  width: 80px;
+  margin: 35px auto;
+  text-align: center;
+  background: yellow;
+  color: black;
+  display: flex;
+  height: 80px;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: 500;
+  padding: 8px;
+}
+
+.number-value {
+  font-size: 50px;
+}
+
+.number-text {
+}
+
+@media (max-width: 600px) {
+  main {
+    max-width: 100%;
+  }
+}
