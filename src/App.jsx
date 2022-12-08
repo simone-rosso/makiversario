@@ -20,12 +20,12 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
       value: days,
     },
     {
-      text: "min",
-      value: minutes,
-    },
-    {
       text: "horas",
       value: hours,
+    },
+    {
+      text: "min",
+      value: minutes,
     },
     {
       text: "segundos",
