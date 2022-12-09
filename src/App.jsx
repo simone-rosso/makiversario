@@ -2,7 +2,7 @@ import React from "react";
 import Countdown from "react-countdown";
 import "./App.css";
 
-const Completionist = () => <span>You are good to go!</span>;
+const Completionist = () => <span>FIESTAAAA!</span>;
 
 const Box = ({ children, text }) => {
   return (
@@ -54,12 +54,13 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 };
 
 const Counter = () => {
+  const date = "2022-12-10T00:00:00";
+
+/*   var d = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
+  var actiondate = new Date(d); */
+
   return (
-    <Countdown
-      date={new Date("December 10, 2022 00 :00:00")}
-      renderer={renderer}
-      daysInHours={true}
-    />
+    <Countdown date={new Date(date.replace(/\s/, 'T'))} renderer={renderer} daysInHours={true} />
   );
 };
 
