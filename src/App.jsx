@@ -6,7 +6,10 @@ const Completionist = () => <span>FIESTAAAA!</span>;
 
 const Box = ({ children, text }) => {
   return (
-    <div className="numbers">
+    <div
+      className="numbers"
+      style={children === 0 ? { background: "red" } : { background: "yellow" }}
+    >
       <div className="number-value">{children}</div>
       <div className="number-text">{text}</div>
     </div>
@@ -56,11 +59,15 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 const Counter = () => {
   const date = "2022-12-10T00:00:00";
 
-/*   var d = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
+  /*   var d = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
   var actiondate = new Date(d); */
 
   return (
-    <Countdown date={new Date(date.replace(/\s/, 'T'))} renderer={renderer} daysInHours={true} />
+    <Countdown
+      date={new Date(date.replace(/\s/, "T"))}
+      renderer={renderer}
+      daysInHours={true}
+    />
   );
 };
 
