@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Countdown from "react-countdown";
 import "./App.css";
-import { initializeApp } from "firebase/app";
+/* import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase.config";
 import {
   getFirestore,
   collection,
   getDocs,
   addDoc,
-} from "firebase/firestore/lite";
+} from "firebase/firestore/lite"; */
 
 const videos = [
   "https://media.tenor.com/DH7ZhU1IRH4AAAAC/lets-party-cats.gif",
@@ -19,8 +19,8 @@ const videos = [
   "https://thumbs.gfycat.com/AlienatedPolishedBunny-max-1mb.gif",
 ];
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+/* const app = initializeApp(firebaseConfig);
+const db = getFirestore(app); */
 
 const Box = ({ children, text }) => {
   return (
