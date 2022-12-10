@@ -118,7 +118,7 @@ const renderer = ({ days, hours, minutes, seconds, completed, children }) => {
     },
   ];
 
-  if (!completed) {
+  if (completed) {
     // Render a complete state
     return <CounterCompleted />;
   } else {
