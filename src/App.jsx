@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Countdown from "react-countdown";
 import "./App.css";
-
-const Completionist = () => <span>FIESTAAAA!</span>;
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../firebase.config";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+} from "firebase/firestore/lite";
 
 const videos = [
   "https://media.tenor.com/DH7ZhU1IRH4AAAAC/lets-party-cats.gif",
@@ -12,6 +18,9 @@ const videos = [
   "https://media.tenor.com/7UCfXiVU8fkAAAAd/get-it-party.gif",
   "https://thumbs.gfycat.com/AlienatedPolishedBunny-max-1mb.gif",
 ];
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const Box = ({ children, text }) => {
   return (
@@ -25,7 +34,62 @@ const Box = ({ children, text }) => {
   );
 };
 
-const renderer = ({ days, hours, minutes, seconds, completed }) => {
+const CounterCompleted = () => {
+  const [link, setLink] = useState(/* localStorage.getItem("maki") */);
+
+  useEffect(() => {
+    getLinks(db);
+  }, []);
+
+  const onSelect = (v) => {
+    localStorage.setItem("maki", v);
+    setLink(v);
+  };
+
+  async function getLinks(db) {
+    const linksCol = collection(db, "list_items");
+    const linkSnapshot = await getDocs(linksCol);
+    console.log(linkSnapshot);
+    const linkList = linkSnapshot.docs.map((doc) => doc.data());
+    console.log("linkList", linkList);
+    return linkList;
+  }
+
+  return (
+    <>
+      <h1>FELIZ MAKIVERSARIO!!!</h1>
+      {link ? (
+        <img src={link} width="300" />
+      ) : (
+        <>
+          <img
+            src="https://acegif.com/wp-content/uploads/firework-12.gif"
+            height={"100px"}
+            width={"200px"}
+          />
+          <h3 className="subtitle">
+            elige cuidadosamente como celebrarlo, solo tienes una posibilidad...
+          </h3>
+          <div className={"div-buttons"}>
+            {videos.map((v, i) => {
+              return (
+                <button
+                  className="buttons-options"
+                  key={v}
+                  onClick={() => onSelect(v)}
+                >
+                  Opción {i + 1}
+                </button>
+              );
+            })}
+          </div>
+        </>
+      )}
+    </>
+  );
+};
+
+const renderer = ({ days, hours, minutes, seconds, completed, children }) => {
   const boxes = [
     {
       text: "dia",
@@ -45,28 +109,10 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
     },
   ];
 
-  if (completed) {
-    const [link, setLink] = useState();
+  if (!completed) {
     // Render a complete state
-    return (
-      <>
-        <Completionist />
-        <p>elige como celebrarlo</p>
-        {link ? (
-          <img src={link} />
-        ) : (
-          videos.map((v, i) => {
-            return (
-              <button onClick={() => setLink(v)}>
-                `lo celebraré como en link ${i}`
-              </button>
-            );
-          })
-        )}
-      </>
-    );
+    return <CounterCompleted />;
   } else {
-    // Render a countdown
     return (
       <>
         <h1>MAKIVERSARIO en</h1>
@@ -83,11 +129,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 };
 
 const Counter = () => {
-  const date = "2022-12-11T00:00:00";
-
-  /*   var d = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
-  var actiondate = new Date(d); */
-
+  const date = "2022-12-11T01:00:00";
   return (
     <Countdown
       date={new Date(date.replace(/\s/, "T"))}
@@ -101,7 +143,9 @@ export function App() {
   return (
     <div className="App">
       <main>
-        <Counter />
+        <Counter>
+          <CounterCompleted />
+        </Counter>
       </main>
     </div>
   );

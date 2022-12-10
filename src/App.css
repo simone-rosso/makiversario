@@ -1,6 +1,5 @@
 .App {
   background: #000;
-  height: 100vh;
   display: grid;
   place-content: center;
 }
@@ -12,7 +11,7 @@ main {
   width: 100vw;
   color: yellow;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
 .numbers {
@@ -33,7 +32,19 @@ main {
   font-size: 50px;
 }
 
-.number-text {
+.subtitle {
+  line-height: 1.4;
+  letter-spacing: 2px;
+}
+
+.div-buttons {
+  display: grid;
+  row-gap: 8px;
+}
+
+.buttons-options {
+  height: 70px;
+  border-radius: 12px;
 }
 
 @media (max-width: 600px) {
