@@ -35,25 +35,31 @@ const Box = ({ children, text }) => {
 };
 
 const CounterCompleted = () => {
-  const [link, setLink] = useState(/* localStorage.getItem("maki") */);
+  const [step, setStep] = useState(localStorage.getItem("step") || 0);
+  const [link, setLink] = useState(localStorage.getItem("maki"));
 
-  useEffect(() => {
+  /*   useEffect(() => {
     getLinks(db);
-  }, []);
+  }, []); */
 
   const onSelect = (v) => {
     localStorage.setItem("maki", v);
     setLink(v);
   };
 
-  async function getLinks(db) {
+  const onTriggerStep = () => {
+    localStorage.setItem("step", !step);
+    setStep(!step);
+  };
+
+  /*   async function getLinks(db) {
     const linksCol = collection(db, "list_items");
     const linkSnapshot = await getDocs(linksCol);
     console.log(linkSnapshot);
     const linkList = linkSnapshot.docs.map((doc) => doc.data());
     console.log("linkList", linkList);
     return linkList;
-  }
+  } */
 
   return (
     <>
@@ -68,7 +74,7 @@ const CounterCompleted = () => {
             width={"200px"}
           />
           <h3 className="subtitle">
-            elige cuidadosamente como celebrarlo, solo tienes una posibilidad...
+            elige cuidadosamente como celebrarlo, solo tienes una posibilidad y no hay vuelta atras...
           </h3>
           <div className={"div-buttons"}>
             {videos.map((v, i) => {
@@ -83,6 +89,9 @@ const CounterCompleted = () => {
               );
             })}
           </div>
+   {/*        <button onClick={() => setStep(!onTriggerStep)}>
+            {step === 1 ? "<-- Vuelve al temporizador" : "Ve al premio -->"}
+          </button> */}
         </>
       )}
     </>
@@ -115,7 +124,7 @@ const renderer = ({ days, hours, minutes, seconds, completed, children }) => {
   } else {
     return (
       <>
-        <h1>MAKIVERSARIO en</h1>
+        <h1>MAKIVERSARIO EN</h1>
         {boxes.map(({ text, value }) => {
           return (
             <Box key={text} text={text}>

@@ -12,6 +12,7 @@ main {
   color: yellow;
   text-align: center;
   padding-top: 10px;
+  margin-bottom: 20px;
 }
 
 .numbers {
@@ -45,6 +46,9 @@ main {
 .buttons-options {
   height: 70px;
   border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  background: linear-gradient(175deg, yellow 57%, lime 100%);
 }
 
 @media (max-width: 600px) {
