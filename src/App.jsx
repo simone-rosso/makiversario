@@ -89,9 +89,6 @@ const CounterCompleted = () => {
               );
             })}
           </div>
-   {/*        <button onClick={() => setStep(!onTriggerStep)}>
-            {step === 1 ? "<-- Vuelve al temporizador" : "Ve al premio -->"}
-          </button> */}
         </>
       )}
     </>
